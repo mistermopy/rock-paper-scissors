@@ -86,3 +86,5 @@ function game() {
         return finalScore + ' is your final score. Draw!';
     }
 }
+
+game();
