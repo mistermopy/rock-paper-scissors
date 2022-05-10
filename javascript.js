@@ -42,7 +42,9 @@ function playRound(playerSelection, computerSelection) {
 function recordScore() {
     if (round == 'Draw!') {
         return Number(0);
-    } else if ((round == 'You lose! Paper beats Rock.') || (round == 'You lose! Rock beats Scissors.') || (round == 'You lose! Scissors beat Paper.')) {
+    } else if ((round == 'You lose! Paper beats Rock.') || 
+    (round == 'You lose! Rock beats Scissors.') || 
+    (round == 'You lose! Scissors beat Paper.')) {
         return Number(-1);
     } else {
         return Number(1);
