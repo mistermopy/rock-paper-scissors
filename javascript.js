@@ -1,4 +1,7 @@
 let result = 0;
+const btnR = document.querySelector('#btnR');
+const btnP = document.querySelector('#btnP');
+const btnS = document.querySelector('#btnS');
 
 function computerPlay() {
     if (Math.random() <= .33) {
@@ -13,6 +16,8 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     let messageLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
     let messageWin = `You win! ${playerSelection} beats ${computerSelection}.`;
+    console.log(`playerSelection: ${playerSelection}`);
+    console.log(`computerSelection: ${computerSelection}`);
     if (computerSelection == playerSelection) {
         result += Number(0);
         console.log('Draw!');
@@ -52,15 +57,23 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
+btnR.addEventListener('click', ()=> {
+    playRound(btnR.textContent, computerPlay());
+});
+
+btnP.addEventListener('click', ()=> {
+    playRound(btnP.textContent, computerPlay());
+});
+
+btnS.addEventListener('click', ()=> {
+    playRound(btnS.textContent, computerPlay());
+});
+
+/*function game() {
     for (let i = 0; i < 5; i++) {
-        let playerPrompt = prompt("rock, paper, or scissors?");
-        playerSelection = playerPrompt.toLowerCase();
-        console.log(`playerSelection: ${playerSelection}`);
-        computerSelection = computerPlay();
-        console.log(`computerSelection: ${computerSelection}`);
-        playRound(playerSelection, computerSelection);
+
     }
+
     let summary = '';
     if (result < 0) {
         summary = result + ' is your final score. You lose.';
@@ -70,6 +83,4 @@ function game() {
         summary = result + ' is your final score. Draw!';
     }
     console.log(summary);
-}
-
-game();
+}*/
