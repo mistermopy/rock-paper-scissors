@@ -1,7 +1,39 @@
-let result = 0;
-const btnR = document.querySelector('#btnR');
-const btnP = document.querySelector('#btnP');
-const btnS = document.querySelector('#btnS');
+const body = document.querySelector('body'), 
+container = document.querySelector('.container'),
+content = document.querySelector('#content'),
+rock = document.querySelector('#rock'),
+paper = document.querySelector('#paper'),
+scissors = document.querySelector('#scissors'),
+btnCSS = document.querySelector('#btnCSS'),
+playerSelectionDisplay = document.querySelector('#playerSelection'),
+compSelectionDisplay = document.querySelector('#computerSelection'),
+resultDisplay = document.querySelector('#result'),
+playerScore = document.querySelector('#playerScore'),
+compScore = document.querySelector('#computerScore');
+
+body.style = 'height: 95vh; width: 95vw;';
+container.style = 'height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center;';
+btnCSS.style = 'display: flex; gap: 15%;';
+content.style = 'margin-top: 5%; height: 80%; width: 80%; display: flex; flex-direction: column; justify-content: space-between;';
+
+let playerSelectionValue = document.createElement('span');
+let compSelectionValue = document.createElement('span');
+playerSelectionValue.textContent = '';
+compSelectionValue.textContent = '';
+playerSelectionDisplay.appendChild(playerSelectionValue);
+compSelectionDisplay.appendChild(compSelectionValue);
+let resultsValue = document.createElement('span');
+resultsValue.textContent = '';
+resultDisplay.appendChild(resultsValue);
+
+let pScoreDisplay = document.createElement('span');
+pScoreActual = 0;
+let cScoreDisplay = document.createElement('span');
+cScoreActual = 0;
+pScoreDisplay.textContent = `${pScoreActual}`;
+cScoreDisplay.textContent = `${cScoreActual}`;
+playerScore.appendChild(pScoreDisplay);
+compScore.appendChild(cScoreDisplay);
 
 function computerPlay() {
     if (Math.random() <= .33) {
@@ -16,71 +48,54 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     let messageLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
     let messageWin = `You win! ${playerSelection} beats ${computerSelection}.`;
-    console.log(`playerSelection: ${playerSelection}`);
-    console.log(`computerSelection: ${computerSelection}`);
+    const draw = 'Draw!';
+    playerSelectionValue.textContent = playerSelection;
+    compSelectionValue.textContent = computerSelection;
     if (computerSelection == playerSelection) {
-        result += Number(0);
-        console.log('Draw!');
-        console.log(`Current score: ${result}`);
+        resultsValue.textContent = draw;
     } else {
         if (playerSelection == 'rock') {
             if (computerSelection == 'paper') {
-                result += Number(-1);
-                console.log(messageLose);
-                console.log(`Current score: ${result}`);
+                cScoreActual += 1;
+                cScoreDisplay.textContent = `${cScoreActual}`;
+                resultsValue.textContent = messageLose;
             } else {
-                result += Number(1);
-                console.log(messageWin);
-                console.log(`Current score: ${result}`);
+                pScoreActual += 1;
+                pScoreDisplay.textContent = `${pScoreActual}`;
+                resultsValue.textContent = messageWin;
             }
         } else if (playerSelection == 'paper') {
             if (computerSelection == 'rock') {
-                result += Number(1);
-                console.log(messageWin);
-                console.log(`Current score: ${result}`);
+                pScoreActual += 1;
+                pScoreDisplay.textContent = `${pScoreActual}`;
+                resultsValue.textContent = messageWin;
             } else {
-                result += Number(-1);
-                console.log(messageLose);
-                console.log(`Current score: ${result}`);
+                cScoreActual += 1;
+                cScoreDisplay.textContent = `${cScoreActual}`;
+                resultsValue.textContent = messageLose;
             }
         } else {
             if (computerSelection == 'rock') {
-                result += Number(-1);
-                console.log(messageLose);
-                console.log(`Current score: ${result}`);
+                cScoreActual += 1;
+                cScoreDisplay.textContent = `${cScoreActual}`;
+                resultsValue.textContent = messageLose;
             } else if (computerSelection == 'paper') {
-                result += Number(1);
-                console.log(messageWin);
-                console.log(`Current score: ${result}`);
+                pScoreActual += 1;
+                pScoreDisplay.textContent = `${pScoreActual}`;
+                resultsValue.textContent = messageWin;
             }
         }
     }
 }
 
-btnR.addEventListener('click', ()=> {
-    playRound(btnR.textContent, computerPlay());
+rock.addEventListener('click', ()=> {
+    playRound('rock', computerPlay());
 });
 
-btnP.addEventListener('click', ()=> {
-    playRound(btnP.textContent, computerPlay());
+paper.addEventListener('click', ()=> {
+    playRound('paper', computerPlay());
 });
 
-btnS.addEventListener('click', ()=> {
-    playRound(btnS.textContent, computerPlay());
+scissors.addEventListener('click', ()=> {
+    playRound('scissors', computerPlay());
 });
-
-/*function game() {
-    for (let i = 0; i < 5; i++) {
-
-    }
-
-    let summary = '';
-    if (result < 0) {
-        summary = result + ' is your final score. You lose.';
-    } else if (result > 0) {
-        summary = result + ' is your final score. You win!';
-    } else {
-        summary = result + ' is your final score. Draw!';
-    }
-    console.log(summary);
-}*/
