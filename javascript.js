@@ -8,11 +8,15 @@ btnCSS = document.querySelector('#btnCSS'),
 playerSelectionDisplay = document.querySelector('#playerSelection'),
 compSelectionDisplay = document.querySelector('#computerSelection'),
 resultDisplay = document.querySelector('#result'),
+gameLose = 'You lost 5 games. You lose. Sorry.',
+gameWin = 'Wait you won?! 5 games! Congrats!',
 playerScore = document.querySelector('#playerScore'),
 compScore = document.querySelector('#computerScore');
 
+let finalResult = document.createElement('div');
+
 body.style = 'height: 95vh; width: 95vw;';
-container.style = 'height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center;';
+container.style = 'height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;';
 btnCSS.style = 'display: flex; gap: 15%;';
 content.style = 'margin-top: 5%; height: 80%; width: 80%; display: flex; flex-direction: column; justify-content: space-between;';
 
@@ -25,6 +29,7 @@ compSelectionDisplay.appendChild(compSelectionValue);
 let resultsValue = document.createElement('span');
 resultsValue.textContent = '';
 resultDisplay.appendChild(resultsValue);
+resultDisplay.appendChild(finalResult);
 
 let pScoreDisplay = document.createElement('span');
 pScoreActual = 0;
@@ -85,6 +90,11 @@ function playRound(playerSelection, computerSelection) {
                 resultsValue.textContent = messageWin;
             }
         }
+    }
+    if (cScoreActual == 5) {
+        container.replaceChildren(gameLose);
+    } else if (pScoreActual == 5) {
+        container.replaceChildren(gameWin);
     }
 }
 
